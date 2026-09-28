@@ -44,7 +44,6 @@ html-editor-opensource/
 - **Qt4** libraries
 - **qtruby4** - Ruby bindings for Qt4
 - **QtWebKit** - For HTML preview functionality
-- **xdg-utils** - For opening files in system browser (Linux)
 
 ### Build Dependencies
 
