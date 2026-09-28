@@ -23,6 +23,8 @@ class Local_Preview < Qt::Dialog
     @label = Qt::Label.new(tr("File size: %s") % File.size(input).to_filesize)
     puts "got file: #{input}"
     @web_view = Qt::WebView.new
+    ## Files are saved as UTF-8; without a <meta charset> WebKit would assume Latin-1
+    @web_view.settings.setDefaultTextEncoding("utf-8")
     @web_view.load(Qt::Url::fromUserInput(input))
 
     @vert.addWidget(@web_view)
