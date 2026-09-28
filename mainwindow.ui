@@ -587,7 +587,7 @@
     <string>Undo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+U</string>
+    <string>Ctrl+Z</string>
    </property>
   </action>
   <action name="menu_redo">
@@ -643,7 +643,7 @@
  <connections>
   <connection>
    <sender>menu_exit</sender>
-   <signal>activated()</signal>
+   <signal>triggered()</signal>
    <receiver>Editor</receiver>
    <slot>close()</slot>
    <hints>
