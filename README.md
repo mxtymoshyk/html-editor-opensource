@@ -48,6 +48,7 @@ html-editor-opensource/
 ### Build Dependencies
 
 - **rbuic4** - Qt Designer UI compiler for Ruby
+- **rbrcc** - Qt resource compiler for Ruby (bundles the toolbar icons)
 - **rake** - Ruby build tool
 
 ### Installation on Debian/Ubuntu
@@ -76,7 +77,7 @@ git clone https://github.com/your-username/html-editor-opensource.git
 cd html-editor-opensource
 ```
 
-2. Compile the Qt UI files:
+2. Compile the Qt UI and resource files:
 ```bash
 rake build
 ```
@@ -256,7 +257,7 @@ Configurable options via Settings dialog:
 | Command | Description |
 |---------|-------------|
 | `rake` | Build UI files and launch application |
-| `rake build` | Compile .ui files to Ruby classes |
+| `rake build` | Compile .ui and .qrc files to Ruby |
 | `rake launch` | Build and run the application |
 
 ## License

@@ -4,6 +4,11 @@
       system("rbuic4 -x #{i} -o #{File.basename(i, '.ui')}_ui.rb")
       puts "#{i} -> #{File.basename(i, '.ui')}_ui.rb"
     end
+
+    Dir['*.qrc'].each do |i|
+      system("rbrcc #{i} -o #{File.basename(i, '.qrc')}_qrc.rb")
+      puts "#{i} -> #{File.basename(i, '.qrc')}_qrc.rb"
+    end
   end
 
   desc 'Launch application from start.rb'

@@ -7,7 +7,7 @@ class About_Program < Qt::Dialog
 		@vertical = Qt::VBoxLayout.new
 		
 		@logo = Qt::Label.new
-		@logo.pixmap = Qt::Pixmap.new("images/logo.png")
+		@logo.pixmap = Qt::Pixmap.new(":/images/logo.png")
 		
 		@name = Qt::Label.new("Pineapple Editor openSource")
 		@name.setFont(Qt::Font.new("Arial", 18))
