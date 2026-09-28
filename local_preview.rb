@@ -3,11 +3,8 @@ require_relative 'translation'
 
 class Integer
   def to_filesize
-    {
-      'bytes'  => 1024,
-      'kilobytes' => 1024 * 1024,
-      'megabytes' => 1024 * 1024 * 1024,
-    }.each_pair { |e, s| return "#{s / self} #{Qt::Application.translate('Local_Preview', e, nil, Qt::Application::UnicodeUTF8)}" if self < s && self != 0 } ## FIXME if self < 0 crush
+    unit, size = [['megabytes', 1024 * 1024], ['kilobytes', 1024]].find { |_, s| self >= s } || ['bytes', 1]
+    "#{self / size} #{Qt::Application.translate('Local_Preview', unit, nil, Qt::Application::UnicodeUTF8)}"
   end
 end
 
