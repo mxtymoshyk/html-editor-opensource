@@ -35,6 +35,7 @@ build/
 
 # UI compiled files
 *_ui.rb
+*_qrc.rb
 
 # sample html files
 *.html

@@ -1,5 +1,6 @@
 require 'Qt4'
 
+require_relative 'toolbar_qrc'
 require_relative 'mainwindow_ui'
 require_relative 'webpage_ui'
 require_relative 'new_tab'

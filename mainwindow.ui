@@ -236,8 +236,8 @@
   </action>
   <action name="menu_save_file">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/save.png</normaloff>images/toolbar/save.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/save.png</normaloff>:/images/toolbar/save.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -339,8 +339,8 @@
   </action>
   <action name="toolbar_new_file">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/document.png</normaloff>images/toolbar/document.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/document.png</normaloff>:/images/toolbar/document.png</iconset>
    </property>
    <property name="text">
     <string>new_file</string>
@@ -351,8 +351,8 @@
   </action>
   <action name="toolbar_open_file">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/folder.png</normaloff>images/toolbar/folder.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/folder.png</normaloff>:/images/toolbar/folder.png</iconset>
    </property>
    <property name="text">
     <string>open_file</string>
@@ -363,8 +363,8 @@
   </action>
   <action name="toolbar_save_file">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/save.png</normaloff>images/toolbar/save.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/save.png</normaloff>:/images/toolbar/save.png</iconset>
    </property>
    <property name="text">
     <string>save_file</string>
@@ -375,8 +375,8 @@
   </action>
   <action name="toolbar_run">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/wheels.png</normaloff>images/toolbar/wheels.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/wheels.png</normaloff>:/images/toolbar/wheels.png</iconset>
    </property>
    <property name="text">
     <string>run</string>
@@ -387,8 +387,8 @@
   </action>
   <action name="toolbar_undo">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/undo.png</normaloff>images/toolbar/undo.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/undo.png</normaloff>:/images/toolbar/undo.png</iconset>
    </property>
    <property name="text">
     <string>undo</string>
@@ -399,8 +399,8 @@
   </action>
   <action name="toolbar_redo">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/redo.png</normaloff>images/toolbar/redo.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/redo.png</normaloff>:/images/toolbar/redo.png</iconset>
    </property>
    <property name="text">
     <string>redo</string>
@@ -411,8 +411,8 @@
   </action>
   <action name="toolbar_cut">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/cut.png</normaloff>images/toolbar/cut.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/cut.png</normaloff>:/images/toolbar/cut.png</iconset>
    </property>
    <property name="text">
     <string>cut</string>
@@ -423,8 +423,8 @@
   </action>
   <action name="toolbar_copy">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/copy.png</normaloff>images/toolbar/copy.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/copy.png</normaloff>:/images/toolbar/copy.png</iconset>
    </property>
    <property name="text">
     <string>copy</string>
@@ -435,8 +435,8 @@
   </action>
   <action name="toolbar_paste">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/paste.png</normaloff>images/toolbar/paste.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/paste.png</normaloff>:/images/toolbar/paste.png</iconset>
    </property>
    <property name="text">
     <string>paste</string>
@@ -447,8 +447,8 @@
   </action>
   <action name="toolbar_bold">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/font_bold.png</normaloff>images/toolbar/font_bold.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/font_bold.png</normaloff>:/images/toolbar/font_bold.png</iconset>
    </property>
    <property name="text">
     <string>bold</string>
@@ -459,8 +459,8 @@
   </action>
   <action name="toolbar_italic">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/font_italic.png</normaloff>images/toolbar/font_italic.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/font_italic.png</normaloff>:/images/toolbar/font_italic.png</iconset>
    </property>
    <property name="text">
     <string>italic</string>
@@ -471,8 +471,8 @@
   </action>
   <action name="toolbar_underline">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/font_underline.png</normaloff>images/toolbar/font_underline.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/font_underline.png</normaloff>:/images/toolbar/font_underline.png</iconset>
    </property>
    <property name="text">
     <string>underline</string>
@@ -483,8 +483,8 @@
   </action>
   <action name="toolbar_image">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/image 1.png</normaloff>images/toolbar/image 1.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/image 1.png</normaloff>:/images/toolbar/image 1.png</iconset>
    </property>
    <property name="text">
     <string>image</string>
@@ -495,8 +495,8 @@
   </action>
   <action name="toolbar_hyperlink">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/link.png</normaloff>images/toolbar/link.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/link.png</normaloff>:/images/toolbar/link.png</iconset>
    </property>
    <property name="text">
     <string>hyperlink</string>
@@ -507,8 +507,8 @@
   </action>
   <action name="toolbar_settings">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/setting.png</normaloff>images/toolbar/setting.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/setting.png</normaloff>:/images/toolbar/setting.png</iconset>
    </property>
    <property name="text">
     <string>settings</string>
@@ -611,8 +611,8 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/olist.png</normaloff>images/toolbar/olist.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/olist.png</normaloff>:/images/toolbar/olist.png</iconset>
    </property>
    <property name="text">
     <string>olist</string>
@@ -626,8 +626,8 @@
   </action>
   <action name="toolbar_ulist">
    <property name="icon">
-    <iconset>
-     <normaloff>images/toolbar/ulist.png</normaloff>images/toolbar/ulist.png</iconset>
+    <iconset resource="toolbar.qrc">
+     <normaloff>:/images/toolbar/ulist.png</normaloff>:/images/toolbar/ulist.png</iconset>
    </property>
    <property name="text">
     <string>ulist</string>
