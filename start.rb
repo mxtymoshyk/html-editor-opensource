@@ -291,6 +291,10 @@ end
 if $0 == __FILE__
   app = Qt::Application.new(ARGV)
 
+  ## qtruby converts Ruby strings with the locale codec; Ruby strings here are
+  ## UTF-8, so under LANG=C or a non-UTF-8 locale non-ASCII text got lost
+  Qt::TextCodec::setCodecForLocale(Qt::TextCodec::codecForName("UTF-8"))
+
   ## Load translations for the system language, e.g. translations/pineapple_ru.qm
   locale = Qt::Locale::system.name
   qt_translator = Qt::Translator.new
