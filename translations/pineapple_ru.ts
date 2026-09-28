@@ -206,6 +206,10 @@
         <source>File saved.</source>
         <translation>Файл сохранён.</translation>
     </message>
+    <message>
+        <source>untitled</source>
+        <translation>без имени</translation>
+    </message>
 </context>
 <context>
     <name>Settings</name>

@@ -7,10 +7,14 @@ class New_Tab < Qt::PlainTextEdit
   ## General
   slots 'focus_current(int)'
 
+  ## Path of the file shown in this tab, nil until first saved
+  attr_accessor :file_path
+
   
   def initialize(parent = nil, open_file, tab_width)
     super(parent)
     @highlighter = HTML_Highlighter.new(document)
+    @file_path = open_file
 
      unless open_file.nil?
       setPlainText(File.read(open_file, mode: 'r:BOM|UTF-8'))

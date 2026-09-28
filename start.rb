@@ -93,7 +93,6 @@ class Start < Qt::MainWindow
     @ui.toolbar_run.setEnabled(false)
     @ui.menu_show_toolbar.setChecked(true)
     @ui.menu_show_statusbar.setChecked(true)
-    @current_file = ''
     @@tab_width = 2
     @tb_pos_int = 0 #=> Top toolbar position
     
@@ -110,7 +109,7 @@ class Start < Qt::MainWindow
   ## FILE SUBMENU SLOTS
   def new_file
     puts 'triggered new_file'
-    add_tab(New_Tab.new(self, nil, @@tab_width*10), "untitled")
+    add_tab(New_Tab.new(self, nil, @@tab_width*10), tr("untitled"))
     @ui.toolbar_save_file.setEnabled(true)
   end
 
@@ -118,10 +117,9 @@ class Start < Qt::MainWindow
     puts 'triggered open_file'
     @open_file = Qt::FileDialog.getOpenFileName(self, tr("Open file"), Qt::Dir::homePath, tr("HTML Document(*.html);;All files(*)"))
     return if @open_file.nil?
-    @current_file = @open_file
 
     (0...@ui.tabWidget.count).each do |i|
-      if File.basename(@current_file) == @ui.tabWidget.tabText(i)
+      if @ui.tabWidget.widget(i).file_path == @open_file
         @ui.tabWidget.setCurrentIndex(i)
         @ui.statusbar.showMessage(tr("File already loaded."), 2000)
         return
@@ -136,7 +134,7 @@ class Start < Qt::MainWindow
     puts 'triggered save_file'
     return if @ui.tabWidget.currentWidget.nil?
 
-    if @ui.tabWidget.tabText(@ui.tabWidget.currentIndex) == "untitled"
+    if @ui.tabWidget.currentWidget.file_path.nil?
       save_as
     else
       write_current_tab
@@ -150,7 +148,7 @@ class Start < Qt::MainWindow
     @save_file = Qt::FileDialog.getSaveFileName(self, tr("Save"), Qt::Dir::homePath, tr("HTML Document(*.html);;All files(*)"))
     return if @save_file.nil?
 
-    @current_file = @save_file
+    @ui.tabWidget.currentWidget.file_path = @save_file
     @ui.tabWidget.setTabText(@ui.tabWidget.currentIndex, File.basename(@save_file))
     write_current_tab
   end
@@ -188,7 +186,7 @@ class Start < Qt::MainWindow
     save_file
     return if unsaved_tab?
 
-    Qt::DesktopServices::openUrl(Qt::Url::fromLocalFile(@current_file))
+    Qt::DesktopServices::openUrl(Qt::Url::fromLocalFile(@ui.tabWidget.currentWidget.file_path))
   end
 
   def local_preview
@@ -196,7 +194,7 @@ class Start < Qt::MainWindow
     save_file()
     return if unsaved_tab?
 
-    @web_page = Local_Preview.new(self, @current_file)
+    @web_page = Local_Preview.new(self, @ui.tabWidget.currentWidget.file_path)
     @web_page.show
   end
 
@@ -277,15 +275,16 @@ class Start < Qt::MainWindow
   end
 
   def write_current_tab
-    File.open(@current_file, 'w:UTF-8') { |file| file.write(@ui.tabWidget.currentWidget.toPlainText.force_encoding('UTF-8')) }
-    puts "file #{@current_file} saved"
+    tab = @ui.tabWidget.currentWidget
+    File.open(tab.file_path, 'w:UTF-8') { |file| file.write(tab.toPlainText.force_encoding('UTF-8')) }
+    puts "file #{tab.file_path} saved"
     @ui.statusbar.showMessage(tr("File saved."), 2000)
     @ui.toolbar_save_file.setEnabled(false)
   end
 
   ## True when there is no tab or the user cancelled saving a new file
   def unsaved_tab?
-    @ui.tabWidget.currentWidget.nil? || @ui.tabWidget.tabText(@ui.tabWidget.currentIndex) == "untitled"
+    @ui.tabWidget.currentWidget.nil? || @ui.tabWidget.currentWidget.file_path.nil?
   end
 end
 
