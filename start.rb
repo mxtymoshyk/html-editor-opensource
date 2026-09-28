@@ -182,14 +182,16 @@ class Start < Qt::MainWindow
   def open_in_browser
     puts 'triggered open_in_browser'
     save_file
+    return if unsaved_tab?
 
-    ## Not cross-platform but solution :/
-    system("xdg-open #{@current_file}")
+    Qt::DesktopServices::openUrl(Qt::Url::fromLocalFile(@current_file))
   end
 
   def local_preview
     puts 'triggered local_preview'
     save_file()
+    return if unsaved_tab?
+
     @web_page = Local_Preview.new(self, @current_file)
     @web_page.show
   end
@@ -275,6 +277,11 @@ class Start < Qt::MainWindow
     puts "file #{@current_file} saved"
     @ui.statusbar.showMessage("File saved.", 2000)
     @ui.toolbar_save_file.setEnabled(false)
+  end
+
+  ## True when there is no tab or the user cancelled saving a new file
+  def unsaved_tab?
+    @ui.tabWidget.currentWidget.nil? || @ui.tabWidget.tabText(@ui.tabWidget.currentIndex) == "untitled"
   end
 end
 
