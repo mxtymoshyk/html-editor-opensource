@@ -273,7 +273,7 @@ class Start < Qt::MainWindow
   end
 
   def write_current_tab
-    File.open(@current_file, 'w') { |file| file.write(@ui.tabWidget.currentWidget.toPlainText) }
+    File.open(@current_file, 'w:UTF-8') { |file| file.write(@ui.tabWidget.currentWidget.toPlainText.force_encoding('UTF-8')) }
     puts "file #{@current_file} saved"
     @ui.statusbar.showMessage("File saved.", 2000)
     @ui.toolbar_save_file.setEnabled(false)

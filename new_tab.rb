@@ -13,7 +13,7 @@ class New_Tab < Qt::PlainTextEdit
     @highlighter = HTML_Highlighter.new(document)
 
      unless open_file.nil?
-      setPlainText(File.new(open_file).read)
+      setPlainText(File.read(open_file, mode: 'r:BOM|UTF-8'))
     end
     
     setTabStopWidth(tab_width)
