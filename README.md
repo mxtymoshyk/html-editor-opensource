@@ -175,6 +175,18 @@ ruby start.rb
 
 5. Preview in browser (Tools > Browser preview)
 
+### Translations
+
+The interface follows the system language. Available translations live in `translations/`:
+
+- Russian (`pineapple_ru.ts`)
+
+`rake` / `rake launch` compiles them to `.qm` files with `lrelease` (from Qt4 linguist tools; on some distributions it is called `lrelease-qt4`). To compile them alone, run `rake translations`.
+
+To try a language without changing the system one, run e.g. `LANG=ru_RU.UTF-8 ruby start.rb`.
+
+To add a language, copy `pineapple_ru.ts` to `pineapple_<code>.ts` and replace the `<translation>` texts.
+
 ## Implementation Details
 
 ### Architecture

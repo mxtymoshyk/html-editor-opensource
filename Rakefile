@@ -12,9 +12,17 @@
   end
 
   desc 'Launch application from start.rb'
-  task (:launch) => :build  do
+  task (:launch) => [:build, :translations]  do
     puts 'Launching...'
     system('ruby start.rb')
+  end
+
+  desc 'Compile translations (.ts) into Qt message files (.qm)'
+  task(:translations) do
+    Dir['translations/*.ts'].each do |i|
+      system("lrelease #{i} -qm #{i.sub(/\.ts$/, '.qm')}")
+      puts "#{i} -> #{i.sub(/\.ts$/, '.qm')}"
+    end
   end
   
   task (:default) => :launch do end
