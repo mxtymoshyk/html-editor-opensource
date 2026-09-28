@@ -1,4 +1,8 @@
+require_relative 'translation'
+
 class About_Program < Qt::Dialog
+	include Translation
+
 	def initialize(parent = nil)
 		super(parent)
 		setModal(true)
@@ -14,7 +18,7 @@ class About_Program < Qt::Dialog
 		@name.setAlignment(Qt::AlignHCenter)
 		
 		@description = Qt::Label.new
-		@description.setText("Lightweight Qt-based HTML editor.")
+		@description.setText(tr("Lightweight Qt-based HTML editor."))
 		@description.setAlignment(Qt::AlignHCenter)
 
 		@copyright = Qt::Label.new

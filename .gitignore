@@ -39,5 +39,8 @@ build/
 # sample html files
 *.html
 
+# compiled translations
+*.qm
+
 # tmp files
 *~

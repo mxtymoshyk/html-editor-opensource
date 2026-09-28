@@ -1,4 +1,7 @@
+require_relative 'translation'
+
 class Settings < Qt::Dialog
+	include Translation
 
 	slots  'accepted()', 'rejected()', 'disable_tb(int)'
 	
@@ -12,7 +15,7 @@ class Settings < Qt::Dialog
 
 		## Toolbar enable layout
 		@hbox1 = Qt::HBoxLayout.new
-		@toolbar_enabled = Qt::Label.new("Enabled:")
+		@toolbar_enabled = Qt::Label.new(tr("Enabled:"))
 		@toolbar_checkbox = Qt::CheckBox.new
 		
 		@toolbar_checkbox.setChecked(tb_state)
@@ -23,13 +26,13 @@ class Settings < Qt::Dialog
 
 		## Toolbar position layout
 		@hbox2 = Qt::HBoxLayout.new
-		@toolbar_position = Qt::Label.new("Position:")
+		@toolbar_position = Qt::Label.new(tr("Position:"))
 		@toolbar_combobox = Qt::ComboBox.new
 
-		@toolbar_combobox.addItem('Top')
-		@toolbar_combobox.addItem('Bottom')
-		@toolbar_combobox.addItem('Left')
-		@toolbar_combobox.addItem('Right')
+		@toolbar_combobox.addItem(tr('Top'))
+		@toolbar_combobox.addItem(tr('Bottom'))
+		@toolbar_combobox.addItem(tr('Left'))
+		@toolbar_combobox.addItem(tr('Right'))
 		
 		@hbox2.addWidget(@toolbar_position)
 		@hbox2.addWidget(@toolbar_combobox)
@@ -43,12 +46,12 @@ class Settings < Qt::Dialog
 		@toolbar_layout.addLayout(@hbox2)
 
 		## Toolbar section
-		@toolbar_groupbox = Qt::GroupBox.new("Toolbar")
+		@toolbar_groupbox = Qt::GroupBox.new(tr("Toolbar"))
 		@toolbar_groupbox.setLayout(@toolbar_layout)
 		
 		## Statusbar enable layout		
 		@hbox3 = Qt::HBoxLayout.new		
-		@st_label = Qt::Label.new("Enabled:")
+		@st_label = Qt::Label.new(tr("Enabled:"))
 		@st_checkbox = Qt::CheckBox.new	
 		
 		@st_checkbox.setChecked(st_state)
@@ -57,12 +60,12 @@ class Settings < Qt::Dialog
 		@hbox3.addWidget(@st_checkbox)
 
 		## Statusbar section
-		@st_groupbox = Qt::GroupBox.new("Statusbar")
+		@st_groupbox = Qt::GroupBox.new(tr("Statusbar"))
 		@st_groupbox.setLayout(@hbox3)
 
 		## Tab width layout
 		@hbox4 = Qt::HBoxLayout.new
-		@editor_label = Qt::Label.new("Tab width:")
+		@editor_label = Qt::Label.new(tr("Tab width:"))
 		@tab_spinbox = Qt::SpinBox.new
 
 		@tab_spinbox.setMinimum(2)
@@ -73,12 +76,12 @@ class Settings < Qt::Dialog
 		@hbox4.addWidget(@tab_spinbox)
 
 		## Editor section
-		@editor_groupbox = Qt::GroupBox.new("Editor")
+		@editor_groupbox = Qt::GroupBox.new(tr("Editor"))
 		@editor_groupbox.setLayout(@hbox4)
 		
 		## Buttons section
-		@apply_button = Qt::PushButton.new('Apply')
-		@cancel_button = Qt::PushButton.new('Cancel')
+		@apply_button = Qt::PushButton.new(tr('Apply'))
+		@cancel_button = Qt::PushButton.new(tr('Cancel'))
 		Qt::Object.connect(@cancel_button, SIGNAL('clicked()'), self, SLOT('rejected()'))
 		Qt::Object.connect(@apply_button, SIGNAL('clicked()'), self, SLOT('accepted()'))
 

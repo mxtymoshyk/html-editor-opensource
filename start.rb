@@ -8,8 +8,11 @@ require_relative 'no_file_open'
 require_relative 'about_program'
 require_relative 'html_highlight'
 require_relative 'settings'
+require_relative 'translation'
 
 class Start < Qt::MainWindow
+  include Translation
+
   ## File submenu slots
   slots 'new_file()', 'open_file()', 'save_file()', 'save_as()'
   ## Edit submenu
@@ -93,8 +96,8 @@ class Start < Qt::MainWindow
     @@tab_width = 2
     @tb_pos_int = 0 #=> Top toolbar position
     
-    @line_label = Qt::Label.new("Line: 0")    
-    @column_label = Qt::Label.new("Column: 0")    
+    @line_label = Qt::Label.new(tr("Line: %d") % 0)    
+    @column_label = Qt::Label.new(tr("Column: %d") % 0)    
     
     @ui.statusbar.addWidget(@line_label)
     @ui.statusbar.addWidget(@column_label)
@@ -112,20 +115,20 @@ class Start < Qt::MainWindow
 
   def open_file
     puts 'triggered open_file'
-    @open_file = Qt::FileDialog.getOpenFileName(self, "Open file", Qt::Dir::homePath, "HTML Document(*.html);;All files(*)")
+    @open_file = Qt::FileDialog.getOpenFileName(self, tr("Open file"), Qt::Dir::homePath, tr("HTML Document(*.html);;All files(*)"))
     return if @open_file.nil?
     @current_file = @open_file
 
     (0...@ui.tabWidget.count).each do |i|
       if File.basename(@current_file) == @ui.tabWidget.tabText(i)
         @ui.tabWidget.setCurrentIndex(i)
-        @ui.statusbar.showMessage("File already loaded.", 2000)
+        @ui.statusbar.showMessage(tr("File already loaded."), 2000)
         return
       end
     end
 
     add_tab(New_Tab.new(@open_file, @@tab_width*10), File.basename(@open_file))
-    @ui.statusbar.showMessage("File loaded.", 2000)
+    @ui.statusbar.showMessage(tr("File loaded."), 2000)
   end
 
   def save_file
@@ -143,7 +146,7 @@ class Start < Qt::MainWindow
     puts 'triggered save_as'
     return if @ui.tabWidget.currentWidget.nil?
 
-    @save_file = Qt::FileDialog.getSaveFileName(self, "Save", Qt::Dir::homePath, "HTML Document(*.html);;All files(*)")
+    @save_file = Qt::FileDialog.getSaveFileName(self, tr("Save"), Qt::Dir::homePath, tr("HTML Document(*.html);;All files(*)"))
     return if @save_file.nil?
 
     @current_file = @save_file
@@ -229,15 +232,15 @@ class Start < Qt::MainWindow
       @no_file = NoFileOpen.new(self)
       @no_file.show
     end
-    @line_label.setText("Line: 0")
-    @column_label.setText("Column: 0")
+    @line_label.setText(tr("Line: %d") % 0)
+    @column_label.setText(tr("Column: %d") % 0)
     puts "deleted tab ##{int}"
   end
 
   def update_line_count
     puts 'triggered update line'
-    @line_label.setText("Line: " + (@ui.tabWidget.currentWidget.textCursor.blockNumber+1).to_s)
-    @column_label.setText("Column: " + (@ui.tabWidget.currentWidget.textCursor.columnNumber+1).to_s)
+    @line_label.setText(tr("Line: %d") % (@ui.tabWidget.currentWidget.textCursor.blockNumber+1))
+    @column_label.setText(tr("Column: %d") % (@ui.tabWidget.currentWidget.textCursor.columnNumber+1))
     @ui.statusbar.update
   end
 
@@ -273,13 +276,23 @@ class Start < Qt::MainWindow
   def write_current_tab
     File.open(@current_file, 'w') { |file| file.write(@ui.tabWidget.currentWidget.toPlainText) }
     puts "file #{@current_file} saved"
-    @ui.statusbar.showMessage("File saved.", 2000)
+    @ui.statusbar.showMessage(tr("File saved."), 2000)
     @ui.toolbar_save_file.setEnabled(false)
   end
 end
 
 if $0 == __FILE__
   app = Qt::Application.new(ARGV)
+
+  ## Load translations for the system language, e.g. translations/pineapple_ru.qm
+  locale = Qt::Locale::system.name
+  qt_translator = Qt::Translator.new
+  qt_translator.load("qt_" + locale, Qt::LibraryInfo::location(Qt::LibraryInfo::TranslationsPath))
+  app.installTranslator(qt_translator)
+  translator = Qt::Translator.new
+  translator.load("pineapple_" + locale, File.join(__dir__, 'translations'))
+  app.installTranslator(translator)
+
   myapp = Start.new
   myapp.show
   app.exec
